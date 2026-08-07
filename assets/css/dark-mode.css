@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Light Mode Theme (Activated by .dark-mode class toggle in JS)
+   ========================================================================== */
+
+body.dark-mode {
+    /* Primary Colors */
+    --bg-primary: #F7F5F2; /* Soft Ivory */
+    --bg-secondary: #ffffff; /* White */
+    --bg-card: #ffffff;
+    
+    /* Accents (Keep Gold) */
+    --accent-overlay: #F7F5F2;
+    
+    /* Text */
+    --text-primary: #0F0F10; /* Soft Black */
+    --text-secondary: rgba(15, 15, 16, 0.7); /* Muted Black */
+    
+    /* Utilities */
+    --border-color: rgba(200, 169, 106, 0.5); /* Subtle Gold Lines */
+    --overlay-bg: rgba(247, 245, 242, 0.85); /* Light Overlay */
+    --overlay-border: rgba(200, 169, 106, 0.3);
+}
+
+/* Specific component overrides for Light Mode */
+body.dark-mode .navbar {
+    background: var(--overlay-bg);
+    border-bottom: 1px solid var(--overlay-border);
+}
+
+body.dark-mode .premium-card, 
+body.dark-mode .service-premium-card,
+body.dark-mode .perspective-card {
+    background: var(--bg-card);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+body.dark-mode .icon-btn {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .icon-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .step-dot {
+    background: rgba(0,0,0,0.1);
+}

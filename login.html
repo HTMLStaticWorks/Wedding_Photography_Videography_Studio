@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Wedding Studio </title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <style>
+        body {
+            background-color: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .auth-card {
+            background: var(--bg-card);
+            padding: 3rem 2.5rem;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .auth-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+        /* Logo SVG icon: dynamic color */
+        .auth-logo svg { color: var(--text-primary); }
+        .auth-card h2 { margin-bottom: 0.5rem; font-size: 1.75rem; }
+        .auth-card p.subtitle { color: var(--text-secondary); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.25rem; text-align: left; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-primary); }
+        .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; background: transparent; color: var(--text-primary); outline: none; transition: 0.3s; }
+        .form-control:focus { border-color: var(--accent-premium); }
+        
+        .input-wrapper { position: relative; }
+        .password-toggle { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; }
+        
+        .auth-link { color: var(--accent-premium); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .auth-link:hover { color: #003642; text-decoration: underline; }
+        
+        body.dark-mode .auth-link { color: #4DB8CC; }
+        body.dark-mode .auth-link:hover { color: #7CE0F2; text-decoration: underline; }
+        
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        
+        .social-login { margin-top: 2rem; }
+        .social-btn { display: flex; align-items: center; justify-content: center; gap: 0.75rem; width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px; background: transparent; color: var(--text-primary); cursor: pointer; margin-bottom: 0.75rem; transition: 0.3s; font-weight: 500; }
+        .social-btn:hover { background: rgba(0, 0, 0, 0.04); border-color: var(--text-secondary); }
+        body.dark-mode .social-btn:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.3); }
+        
+        .divider { display: flex; align-items: center; margin: 1.5rem 0; color: var(--text-secondary); font-size: 0.875rem; }
+        .divider::before, .divider::after { content: ""; flex: 1; border-bottom: 1px solid var(--border-color); }
+        .divider::before { margin-right: 1rem; }
+        .divider::after { margin-left: 1rem; }
+        
+        .fixed-toggles { 
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex; 
+            gap: 0.5rem; 
+        }
+        
+        @media (max-width: 480px) {
+            body { padding: 1rem; }
+            .auth-card { padding: 2rem 1.5rem; }
+            .fixed-toggles {
+                position: static;
+                justify-content: flex-end;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="assets/images/brand-logo.svg">
+</head>
+<body>
+    <div class="fixed-toggles">
+        <button id="darkModeToggle" class="icon-btn" aria-label="Toggle Dark Mode" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <button id="rtlToggle" class="icon-btn" aria-label="Toggle RTL" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+        </button>
+    </div>
+
+    <div class="auth-card">
+        <a href="index.html" class="auth-logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+            Wedding Studio
+        </a>
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Sign in to your client portal</p>
+        
+        <form>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <div class="input-wrapper">
+                    <input type="password" class="form-control" id="password" required style="padding-right: 2.5rem;">
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="form-group flex-between" style="font-size: 0.85rem; flex-wrap: nowrap; gap: 0.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; white-space: nowrap;">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" class="auth-link" style="white-space: nowrap;">Forgot Password?</a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+        </form>
+
+        <div class="divider">Or continue with</div>
+
+        <div class="social-login">
+            <button class="social-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google
+            </button>
+            <button class="social-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.04 2.26-.74 3.58-.8 1.56-.05 2.87.68 3.65 1.83-3.15 1.84-2.6 6.13.56 7.32-.73 1.63-1.66 3.12-2.87 3.82zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.34-1.92 4.31-3.74 4.25z"/></svg>
+                Apple
+            </button>
+        </div>
+
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">New here? <a href="register.html" class="auth-link">Create an account</a></p>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+    </script>
+
+    <!-- Enquiry Modal HTML -->
+    <div class="modal-overlay" id="enquireOverlay">
+        <div class="enquire-modal">
+            <button class="close-modal" id="closeEnquireModal">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="step-indicator">
+                <div class="step-dot active" id="dot1"></div>
+                <div class="step-dot" id="dot2"></div>
+                <div class="step-dot" id="dot3"></div>
+            </div>
+            
+            <form id="enquireForm">
+                <!-- Step 1 -->
+                <div class="form-step active" id="step1">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center;">Let's Get Started</h2>
+                    <div class="enquire-form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div class="enquire-form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="enquire-form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="(555) 123-4567" required>
+                    </div>
+                    <div class="modal-actions" style="justify-content: flex-end;">
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next Step</button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="form-step" id="step2">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center;">Wedding Details</h2>
+                    <div class="enquire-form-group">
+                        <label>Photography Style</label>
+                        <select required>
+                            <option value="">Select a style</option>
+                            <option value="editorial">Editorial</option>
+                            <option value="cinematic">Cinematic</option>
+                            <option value="classic">Classic</option>
+                        </select>
+                    </div>
+                    <div class="enquire-form-group">
+                        <label>Estimated Guest Count</label>
+                        <select required>
+                            <option value="">Select range</option>
+                            <option value="elopement">Under 20 (Elopement)</option>
+                            <option value="small">20 - 75</option>
+                            <option value="medium">75 - 150</option>
+                            <option value="large">150+</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next Step</button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="form-step" id="step3">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center;">Date & Venue</h2>
+                    <div class="enquire-form-group">
+                        <label>Wedding Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="enquire-form-group">
+                        <label>Venue (or City)</label>
+                        <input type="text" placeholder="e.g. Tuscany, Italy" required>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Back</button>
+                        <button type="submit" class="btn btn-primary">Check Availability</button>
+                    </div>
+                </div>
+
+                <!-- Step 4 (Success) -->
+                <div class="form-step" id="step4" style="text-align: center; padding: 2rem 0;">
+                    <svg width="64" height="64" fill="none" stroke="var(--accent-primary)" viewBox="0 0 24 24" style="margin: 0 auto 1.5rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">Request Received!</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Thank you for your enquiry. Our studio manager will get back to you within 24 hours regarding your date.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal JS -->
+    <script>
+        const openBtn = document.getElementById('openEnquireModal');
+        const overlay = document.getElementById('enquireOverlay');
+        const closeBtn = document.getElementById('closeEnquireModal');
+        
+        if(openBtn) openBtn.addEventListener('click', (e) => { e.preventDefault(); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
+        if(closeBtn) closeBtn.addEventListener('click', () => { overlay.classList.remove('active'); document.body.style.overflow = 'auto'; });
+        if(overlay) overlay.addEventListener('click', (e) => { if(e.target === overlay) { overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }});
+
+        function nextStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            updateDots(step);
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            updateDots(step);
+        }
+
+        function updateDots(step) {
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                if(index < step) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+            if(step === 4) document.querySelector('.step-indicator').style.display = 'none';
+        }
+
+        document.getElementById('enquireForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            nextStep(4);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+/* ==========================================================================
+   RTL Styles
+   ========================================================================== */
+html[dir="rtl"] body {
+    text-align: right;
+}
+
+html[dir="rtl"] .hero-overlay {
+    background: linear-gradient(to left, rgba(10, 14, 18, 0.95) 0%, rgba(10, 14, 18, 0.4) 100%);
+}
+
+html[dir="rtl"] .ultra-premium-hero .hero-overlay {
+    background: linear-gradient(-135deg, rgba(10,14,18,0.98) 0%, rgba(10,14,18,0.85) 40%, rgba(0,180,216,0.1) 100%);
+}
+
+html[dir="rtl"] .footer-grid {
+    direction: rtl;
+}
+
+html[dir="rtl"] .card-body {
+    text-align: right;
+}
+
+html[dir="rtl"] .brand svg,
+html[dir="rtl"] .auth-logo svg {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+
+html[dir="rtl"] .footer-brand svg {
+    margin-right: 0 !important;
+    margin-left: 12px !important;
+}
+
+html[dir="rtl"] .fixed-toggles {
+    justify-content: flex-start;
+}
