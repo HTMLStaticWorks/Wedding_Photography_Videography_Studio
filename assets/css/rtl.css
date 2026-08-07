@@ -35,3 +35,7 @@ html[dir="rtl"] .footer-brand svg {
 html[dir="rtl"] .fixed-toggles {
     justify-content: flex-start;
 }
+
+html[dir="rtl"] .sanctuary-features li {
+    text-align: right;
+}
